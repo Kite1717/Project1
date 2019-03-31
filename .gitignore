@@ -20,7 +20,6 @@ dist
 __pycache__
 *.pyc
 *.pyo
-*.class
 
 # macOS
 .DS_Store
