@@ -27,8 +27,7 @@ public class Main {
             }
         }
 
-
-        // get filepath
+        // get filepath if not initialized
         while (file == null) {
             System.out.print("Type a valid file path: ");
             String input = scanner.nextLine();
@@ -46,13 +45,12 @@ public class Main {
         converter.printStatistics();
         converter.WriteLog(logFile);
 
-
         // print sorted inputs
         Sorter sorter = new Sorter(converter.getNums());
         System.out.println("\nValid inputs as sorted:");
         ArrayList<Number> arrayList = sorter.getNumbers();
         for (int i = 0; i < arrayList.size(); i++) {
-            System.out.println((i+1) + ") " + arrayList.get(i).getValue());
+            System.out.printf("%d-) %.2f%n", i+1, arrayList.get(i).getValue());
         }
     }
 }

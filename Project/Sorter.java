@@ -4,10 +4,15 @@ import java.util.ArrayList;
 
 public class Sorter {
     private ArrayList<Number> Numbers;
-    // return sorted list
+
+    /**
+     * @return Sorted list
+     * @see java.util.ArrayList
+     */
     public ArrayList<Number> getNumbers() {
         return Numbers;
     }
+
     public void setNumbers(ArrayList<Number> numbers) {
         Numbers = numbers;
     }

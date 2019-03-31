@@ -6,9 +6,6 @@ import java.util.Scanner;
 
 class Converter {
     private Integer totalCount;
-    private ArrayList<Number> Nums;
-    private Logger Log;
-
     private Integer getTotalCount() {
         return totalCount;
     }
@@ -16,14 +13,23 @@ class Converter {
         this.totalCount = totalCount;
     }
 
+    private ArrayList<Number> Nums;
     public ArrayList<Number> getNums() {
         return Nums;
     }
 
+    private Logger Log;
     public void WriteLog(File file) {
         Log.WriteToFile(file);
     }
 
+    /**
+     * Convert value to Number.
+     *
+     * @param val Value to convert
+     * @return Number representing val
+     * @see Number
+     */
     public static Number convertToNumber(double val) {
         if (Floating.isFloating(val)) return new Floating(val);
         else if (Decimal.isDecimal(val)) return new Decimal(val);
@@ -31,7 +37,7 @@ class Converter {
     }
 
     /**
-     * Convert a single String to Number and add to list. If not a Number, return null;
+     * Convert a single String to Number and add to list. If not a Number, return null.
      *
      * @param str String to convert
      * @return Number representing string or null
@@ -61,7 +67,8 @@ class Converter {
      * Read file and convert every line at specified file.
      *
      * @param file absolute path of file
-     * @return boolean value indicating operation success
+     * @return all current cached Number objects in this object
+     * @see java.util.ArrayList
      */
     public ArrayList<Number> readFile(File file) {
         try {
@@ -76,14 +83,17 @@ class Converter {
         return getNums();
     }
 
-    public void printStatistics() {
-        Double percentageOfSuccess = getNums().size() / (double)getTotalCount();
-        Double percentageOfFailure = 1 - percentageOfSuccess;
 
-        System.out.println("Read " + getTotalCount().toString() + " lines. \n" + getNums().size() +
-                " (" + percentageOfSuccess.toString() + "%)" +
-                " valid and " + (getTotalCount() - getNums().size()) + " (" +
-            percentageOfFailure.toString() + "%)" + " invalid inputs.");
+    /**
+     * Print current statistics.
+     */
+    public void printStatistics() {
+        Double percentageOfSuccess = (getNums().size() / (double)getTotalCount()) * 100;
+        Double percentageOfFailure = 100 - percentageOfSuccess;
+
+        System.out.printf("Read %d lines.%n %d (%.2f%%) valid and %d (%.2f%%) invalid inputs.%n",
+                getTotalCount(), getNums().size(), percentageOfSuccess,
+                getTotalCount() - getNums().size(), percentageOfFailure);
 }
 
     public Converter() {

@@ -19,7 +19,7 @@ class Logger {
     /**
      * Read existing log file and print date and statistics of log file.
      *
-     * @param file
+     * @param file Previously initialized File object
      */
     public static void ReadLogFile(File file) {
         HashMap<String, Integer> ExceptionCount = new HashMap<>();
@@ -44,7 +44,7 @@ class Logger {
         }
 
         for (String date : ExceptionCount.keySet()) {
-            System.out.println(date + ": " + ExceptionCount.get(date) + " exceptions occurred.");
+            System.out.printf("%s: %d exceptions occurred.%n", date, ExceptionCount.get(date));
         }
     }
 
@@ -62,6 +62,7 @@ class Logger {
             bf = new BufferedWriter(new FileWriter(file, true));
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
         if(bf == null) return false;
@@ -82,6 +83,11 @@ class Logger {
 
     }
 
+    /**
+     * Add given parameter to Logs.
+     *
+     * @param log String to add Logs
+     */
     public void add(String log) {
         if (log == null) {
             throw new IllegalArgumentException();
