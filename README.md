@@ -27,7 +27,7 @@
 |   ├── README.md [Distribution and definition of tasks]]
 |   ├── Main.java
 |   ├── Converter.java
-|   ├── Sort.java
+|   ├── Sorter.java
 |   ├── Logger.java
 |   ├── Number.java
 |   ├── Decimal.java (Number)
