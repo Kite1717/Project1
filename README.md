@@ -10,10 +10,10 @@
 - Mert Dede
     - GitHub: `Anaxilaus`
     - No: `2016280010`
-- Ulugbey Alp
+- Uluğbey Alp
     - GitHub: `UlugbeyAlp`
     - No: `2016280002`
-- Mustafa Firat Yilmaz
+- Mustafa Fırat Yılmaz
     - GitHub: `Kite1717`
     - No: `2016280037`
     
@@ -24,7 +24,7 @@
 ├── README.md [Information about project]
 ├── CONTRIBUTING.md [Contribution guide]
 ├── Project
-|   ├── README.md [Distribution and definition of tasks]]
+|   ├── README.md [Distribution and definition of tasks]
 |   ├── Main.java
 |   ├── Converter.java
 |   ├── Sorter.java
