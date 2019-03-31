@@ -20,7 +20,7 @@
 
 ## File Structure
 
-`````
+```
 ├── README.md [Information about project]
 ├── CONTRIBUTING.md [Contribution guide]
 ├── Project
@@ -34,4 +34,4 @@
 |   ├── Floating.java (Number)
 ├── .gitignore
 ├── DESCRIPTION.md
-`````
+```
