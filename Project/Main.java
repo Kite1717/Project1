@@ -14,16 +14,22 @@ public class Main {
 
 
         // parse args
-        // according to description of problem, command-line inputs are valid
         for (String s: args) {
             if (s.contains("--logfile=")) {
                 logFile = new File(s.substring("--logfile=".length()));
+                if (!logFile.isFile()) {
+                    System.out.println("Invalid filepath for logfile!");
+                    return;
+                }
+
                 Logger.ReadLogFile(logFile);
                 return;
             }
             else if (s.contains("--filepath=")) {
                 String filePath = s.substring("--filepath=".length());
                 file = new File(filePath);
+                if (!file.isFile()) file = null;
+                break;
             }
         }
 
@@ -31,11 +37,11 @@ public class Main {
         while (file == null) {
             System.out.print("Type a valid file path: ");
             String input = scanner.nextLine();
-            try {
-                file = new File(input);
-                break;
-            } catch (Exception e) {
-                System.out.println("Invalid file path.");
+            file = new File(input);
+
+            if (!file.isFile()) {
+                System.out.println("File doesn't exists.");
+                file = null;
             }
         }
 
