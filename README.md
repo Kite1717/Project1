@@ -45,30 +45,25 @@ $ java Project.Main --logfile=$path_of_logfile
 
 ```
 $ java Project.Main --filepath=TestCases.txt
-Read 41 lines.
- 14 (34.15%) valid and 27 (65.85%) invalid inputs.
+Read 21 lines.
+ 9 (42.86%) valid and 12 (57.14%) invalid inputs.
 
 Valid inputs as sorted:
-1-) -78.00
-2-) 11.00
-3-) 405.00
-4-) 443434.00
-5-) 1609299097.00
-6-) 2526772936.00
-7-) 4700027789.00
-8-) 5202532453.00
-9-) 5870746727.00
-10-) 7776118214.00
-11-) 8582231353.00
-12-) 8933596159.00
-13-) 9555028142.00
-14-) 9563529141.00
+1-) -23432.34
+2-) -78.00
+3-) -3.14
+4-) 0.43
+5-) 11.00
+6-) 43.70
+7-) 223.43
+8-) 405.00
+9-) 443434.00
 ```
 
 ### Reading log files
 ```
 $ java Project.Main --logfile=LogFile.txt
-2019-04-01 : 27 exceptions occurred.
+2019-04-03 : 12 exceptions occurred.
 ```
 
 ## File Structure

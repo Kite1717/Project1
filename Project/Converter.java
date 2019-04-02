@@ -51,7 +51,9 @@ class Converter {
         for (int i = 0; i < charArray.length; i++) {
             if ('0' <= charArray[i] && charArray[i] <= '9') strResult.append(charArray[i]);
             else if (i == 0 && (charArray[i] == '-' || charArray[i] == '+')) strResult.append(charArray[i]);
-            else {
+            else if (charArray[i] == '.' && !strResult.toString().contains(".")){
+                strResult.append(charArray[i]);
+            } else {
                 Log.add("Exception, not a numeric value: " + str);
                 return null;
             }
