@@ -22,14 +22,14 @@ public class Sorter {
      * Time complexity: O(n^2).
      */
     public void Sort() {
-        double minValue;
+        Number minValue;
         int minIndex;
         for (int i = 0; i < getNumbers().size() - 1; i++) {
             minIndex = i;
-            minValue = getNumbers().get(i).getValue();
+            minValue = getNumbers().get(i);
             for (int j = i; j < getNumbers().size(); j++) {
-                if (minValue > Numbers.get(j).getValue()) {
-                    minValue = Numbers.get(j).getValue();
+                if (minValue.compareTo(Numbers.get(j)) > 0) {
+                    minValue = Numbers.get(j);
                     minIndex = j;
                 }
             }

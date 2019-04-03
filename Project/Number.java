@@ -17,6 +17,6 @@ abstract class Number implements Comparable<Number> {
         return getValue().compareTo(other.getValue());
     }
 
-    public String toString() { return Value.toString(); }
+    public String toString() { return String.format("%.2f", getValue()); }
 
 }

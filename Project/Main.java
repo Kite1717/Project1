@@ -56,7 +56,7 @@ public class Main {
         System.out.println("\nValid inputs as sorted:");
         ArrayList<Number> arrayList = sorter.getNumbers();
         for (int i = 0; i < arrayList.size(); i++) {
-            System.out.printf("%d-) %.2f%n", i+1, arrayList.get(i).getValue());
+            System.out.printf("%d-) %s%n", i+1, arrayList.get(i).toString());
         }
     }
 }
