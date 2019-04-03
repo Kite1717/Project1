@@ -1,9 +1,11 @@
 package Project;
 
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 class Logger {
@@ -22,30 +24,71 @@ class Logger {
      * @param file Previously initialized File object
      */
     public static void ReadLogFile(File file) {
-        HashMap<String, Integer> ExceptionCount = new HashMap<>();
-        Scanner reader;
+        BufferedReader bf  = null;
+        HashSet<String> currentlog = new HashSet<>();
+        //The HashSet does not add the same element again
+        HashMap<HashSet<String>,String> logs = new HashMap<>();
+        LocalDate now = LocalDate.now();
+        try{
+            bf = new BufferedReader(new FileReader(file));
 
-        try {
-            reader = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found, invalid file object!");
+        }
+        catch (FileNotFoundException e)
+        {
             e.printStackTrace();
             return;
         }
+        try {
+            while (bf.ready()) {
+                //I threw logs into the HashSet s the specific of each day
+                String s = bf.readLine();
+                if (logs.size() == 0 || !logs.containsValue(s.substring(0, 11))) {
+                    logs.put(addLog(file, s.substring(0, 11)), s.substring(0, 11));
+                }
+            }
+            bf.close();
 
-        while (reader.hasNextLine()) {
-            String line = reader.nextLine();
-
-            // assuming date format is '2019-01-01'
-            String date = line.substring(0, 11);
-
-            if (ExceptionCount.containsKey(date)) ExceptionCount.put(date, ExceptionCount.get(date) + 1);
-            else ExceptionCount.put(date, 1);
+        }
+        catch (IOException e)
+        {
+            e.getMessage();
         }
 
-        for (String date : ExceptionCount.keySet()) {
-            System.out.printf("%s: %d exceptions occurred.%n", date, ExceptionCount.get(date));
+        // size and today logs
+        for(HashSet<String> item : logs.keySet())
+        {
+            if(logs.get(item).contains(now.toString()))
+                currentlog = item;
+            System.out.println(logs.get(item) + " : " + item.size() + " exceptions occurred.");
         }
+
+
+        System.out.println("\nPress Enter to see the details today...");
+        Scanner s = new Scanner(System.in);
+
+        //You can reach all the keyboard keys from the KeyEvent class
+        if(s.nextLine().contains(String.valueOf(KeyEvent.VK_ENTER)));
+
+        // Today logs
+        for (String item : currentlog)
+            System.out.println(item);
+
+
+
+    }
+    // Add to HashSet
+    private static HashSet<String> addLog(File file, String date) throws IOException {
+        BufferedReader bf = new BufferedReader(new FileReader(file));
+        HashSet<String> ret = new HashSet<>();
+        while (bf.ready())
+        {
+
+            String s = bf.readLine();
+            if(s.substring(0,11).equals(date))
+                ret.add(s);
+        }
+        bf.close();
+        return  ret;
     }
 
     /**

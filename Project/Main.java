@@ -58,5 +58,6 @@ public class Main {
         for (int i = 0; i < arrayList.size(); i++) {
             System.out.printf("%d-) %s%n", i+1, arrayList.get(i).toString());
         }
+        Logger.ReadLogFile(logFile);
     }
 }
