@@ -3,10 +3,7 @@ package Project;
 import java.awt.event.KeyEvent;
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 class Logger {
     private ArrayList<String> Logs;
@@ -43,7 +40,7 @@ class Logger {
                 //I threw logs into the HashSet s the specific of each day
                 String s = bf.readLine();
                 if (logs.size() == 0 || !logs.containsValue(s.substring(0, 11))) {
-                    logs.put(addLog(file, s.substring(0, 11)), s.substring(0, 11));
+                    logs.put(addLog(file, s.substring(0, 11),false), s.substring(0, 11));
                 }
             }
             bf.close();
@@ -54,16 +51,23 @@ class Logger {
             e.getMessage();
         }
 
+        //sorted array
+        String[] sort = new String[logs.size()];int i=0;
         // size and today logs
         for(HashSet<String> item : logs.keySet())
         {
             if(logs.get(item).contains(now.toString()))
                 currentlog = item;
-            System.out.println(logs.get(item) + " : " + item.size() + " exceptions occurred.");
+            sort[i] = logs.get(item) + " : " + item.size() + " exceptions occurred.";
+            i++;
         }
+        Arrays.sort(sort);
+        //days and exceptions amount
+        for (String item : sort)
+            System.out.println(item);
 
 
-        System.out.println("\nPress Enter to see the details today...");
+        System.out.print("\nPress Enter to see the details today...");
         Scanner s = new Scanner(System.in);
 
         //You can reach all the keyboard keys from the KeyEvent class
@@ -74,23 +78,49 @@ class Logger {
             System.out.println(item);
 
 
-
     }
-    // Add to HashSet
-    private static HashSet<String> addLog(File file, String date) throws IOException {
-        BufferedReader bf = new BufferedReader(new FileReader(file));
+
+    /**
+     *
+     * @param file Recording file exception(Log File)
+     * @param date Exception the date you want to view the records Format YYYY-MM-DD
+     * @param show To show the data on the requested date
+     * @return the HashSet where the records are kept for that day
+     *
+     * Records can be viewed by using the desired date of Main as well
+     * etc.
+     * public static void main(String[] args)
+     *     {  ...
+     *     .....
+     *     ....
+     *
+     *       Logger.addLog(logFile,"2019-04-03",true);
+     *
+     *     }
+     *
+     */
+    public static HashSet<String> addLog(File file, String date,boolean show)  {
+
         HashSet<String> ret = new HashSet<>();
-        while (bf.ready())
-        {
+        String s;
+        try {
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
 
-            String s = bf.readLine();
-            if(s.substring(0,11).equals(date))
-                ret.add(s);
+                s = sc.nextLine();
+                if (s.substring(0, 11).contains(date)) {
+                    ret.add(s);
+                }
+            }
+
+            if(show) ret.forEach(System.out::println); // lambda expression
+            sc.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        bf.close();
-        return  ret;
-    }
+        return ret;
 
+    }
     /**
      * Write *(by appending, not overwriting) list to a file line by line including date.
      * Assume you can invoke toString method from list items.
