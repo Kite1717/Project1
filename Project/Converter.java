@@ -45,6 +45,7 @@ class Converter {
      */
     private Number convert(String str) {
         setTotalCount(getTotalCount() + 1);
+        if (str.isEmpty()) return null;
 
         StringBuilder strResult = new StringBuilder();
         char[] charArray = str.trim().toCharArray();
@@ -76,23 +77,25 @@ class Converter {
         try {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
-                convert(reader.nextLine());
+                convert(reader.nextLine().trim());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return getNums();
     }
-
 
     /**
      * Print current statistics.
      */
     public void printStatistics() {
+        if (getTotalCount() == 0) {
+            System.out.println("Read 0 lines. No statistics available!");
+            return;
+        }
+
         Double percentageOfSuccess = (getNums().size() / (double)getTotalCount()) * 100;
         Double percentageOfFailure = 100 - percentageOfSuccess;
-
         System.out.printf("Read %d lines.%n %d (%.2f%%) valid and %d (%.2f%%) invalid inputs.%n",
                 getTotalCount(), getNums().size(), percentageOfSuccess,
                 getTotalCount() - getNums().size(), percentageOfFailure);
