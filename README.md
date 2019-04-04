@@ -63,7 +63,17 @@ Valid inputs as sorted:
 ### Reading log files
 ```
 $ java Project.Main --logfile=LogFile.txt
-2019-04-03 : 12 exceptions occurred.
+2013-10-04  : 2 exceptions occurred.
+2015-03-24  : 2 exceptions occurred.
+2017-13-04  : 2 exceptions occurred.
+2019-02-01  : 1 exceptions occurred.
+2019-02-04  : 1 exceptions occurred.
+2019-04-01  : 1 exceptions occurred.
+2019-04-04  : 2 exceptions occurred.
+
+Press Enter to see the details today...
+2019-04-04 Exception, not a numeric value: A
+2019-04-04 Exception, not a numeric value: SdgA
 ```
 
 ## File Structure
