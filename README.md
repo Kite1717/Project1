@@ -1,23 +1,5 @@
 ## Project 1
-[![Status](https://img.shields.io/badge/Status-Completed-blue.svg)](https://github.com/DokuzEylulCsc/proje-1-muf/tree/master/Project)
 
-- Description: [3. Dosyadaki Hakikat](https://github.com/DokuzEylulCsc/proje-1-muf/tree/master/DESCRIPTION.md)
-- Using `Java and JDK 11.`
-
-### Contributors / Students
-
-- Mert Dede
-    - GitHub: `Anaxilaus`
-    - No: `2016280010`
-- Uluğbey Alp
-    - GitHub: `UlugbeyAlp`
-    - No: `2016280002`
-- Mustafa Fırat Yılmaz
-    - GitHub: `Kite1717`
-    - No: `2016280037`
-
-    
-**Team name: `MUF.` Stands for `M`ert, `U`luğbey and `F`ırat.**
 
     
 ## Usage
